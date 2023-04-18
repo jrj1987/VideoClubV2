@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tema17_2;
 
 import java.sql.SQLException;
@@ -43,7 +38,7 @@ public final class TableModelPeliculas extends AbstractTableModel {
         fireTableDataChanged();
     }
      
-     public void insertar(String titulo, int año, int puntuacion, String sinopsis) throws SQLException {
+    public void insertar(String titulo, int año, int puntuacion, String sinopsis) throws SQLException {
           
         ConexionMySQL.getInstance().insertarPelicula(titulo, año, puntuacion, sinopsis);
         cargarPeliculas();

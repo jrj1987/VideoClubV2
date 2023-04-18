@@ -33,14 +33,18 @@ public class ConexionMySQL {
     /**
     * Patrón de diseño Singleton
     * Su intención consiste en garantizar que una clase solo tenga una instancia y proporcionar un punto de acceso global a ella.
-    * 
+    * Se implementa haciendo privado el constructor de la clase y creando un método estático que crea una instancia del objeto 
+    * si no existiera
     */
     private static ConexionMySQL instance;  // Solo habrá una conexión en toda la aplicación
     
      /**
      * Constructor de la clase
      *
+     * El constructor es privado para permitir que únicamente pueda ser llamado desde la propia clase
+     * 
      * @param host Servidor donde se encuentra la BD
+     * @param port Puerto de la conexión a la BD
      * @param usuario Usuario de la base de datos
      * @param pass Contraseña del usuario
      * @param bd Base de datos a la que nos conectamos
@@ -54,6 +58,16 @@ public class ConexionMySQL {
         connection = null;
     }
 
+    /**
+     * Método estático que genera la única instancia de esta clase
+     * 
+     * @param host Servidor donde se encuentra la BD
+     * @param port Puerto de la conexión a la BD
+     * @param usuario Usuario de la base de datos
+     * @param pass Contraseña del usuario
+     * @param bd Base de datos a la que nos conectamos
+     * @throws SQLException
+     */
     public static void crearConexion(String host, String port, String usuario, String pass, String bd) throws SQLException {
         if (instance != null) {
             try {
@@ -66,6 +80,11 @@ public class ConexionMySQL {
         instance = new ConexionMySQL(host, port, usuario, pass, bd);
     }
 
+    /***
+     * Devuelve la instancia
+     * @return 
+     * @throws SQLException
+     */
     public static ConexionMySQL getInstance() throws SQLException {
         if (instance == null) {
             throw new SQLException("Debe crear una conexión antes de acceder a la instancia.");
