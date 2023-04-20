@@ -174,11 +174,12 @@ public class ConexionMySQL {
             ResultSet rset = ConexionMySQL.getInstance().ejecutarSelect("SELECT * FROM peliculas");
             
             while(rset.next()){
+                int id = rset.getInt("id");
                 String titulo = rset.getString("titulo");
-                int anyo = rset.getInt("año");
+                int anyo = rset.getInt("anyo");
                 int puntuacion = rset.getInt("puntuacion");
                 String sinopsis = rset.getString("sinopsis");
-                Pelicula p = new Pelicula(titulo, anyo, puntuacion, sinopsis);
+                Pelicula p = new Pelicula(id, titulo, anyo, puntuacion, sinopsis);
                 peliculas.add(p);
             }
          }
@@ -192,9 +193,9 @@ public class ConexionMySQL {
      /***
      * COMENTAR
      */
-     public int insertarPelicula(String titulo, int año, int puntuacion, String sinopsis) throws SQLException {
+     public int insertarPelicula(String titulo, int anyo, int puntuacion, String sinopsis) throws SQLException {
         Statement stmt = connection.createStatement();
-        String consulta = "INSERT INTO peliculas (id, titulo, año, puntuacion, sinopsis) VALUES (NULL, '"+titulo+"', '"+año+"', '"+puntuacion+"', '"+sinopsis+"');";
+        String consulta = "INSERT INTO peliculas (id, titulo, anyo, puntuacion, sinopsis) VALUES (NULL, '"+titulo+"', '"+anyo+"', '"+puntuacion+"', '"+sinopsis+"');";
         int fila = stmt.executeUpdate(consulta);
 
         return fila;

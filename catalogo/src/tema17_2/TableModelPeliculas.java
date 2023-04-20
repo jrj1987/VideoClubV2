@@ -69,7 +69,7 @@ public final class TableModelPeliculas extends AbstractTableModel {
             case 0:
                 return list.get(rowIndex).getTitulo();
             case 1:
-                return list.get(rowIndex).getAño();
+                return list.get(rowIndex).getAnyo();
             case 2:
                 return list.get(rowIndex).getPuntuacion();
             case 3:
